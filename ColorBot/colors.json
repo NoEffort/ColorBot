@@ -1,0 +1,24 @@
+{
+    "colors":
+    {
+        "colorname":
+        {
+            "red": "#RED",
+            "orange": "#ORANGE",
+            "yellow": "#YELLOW",
+            "green": "#GRREN",
+            "blue": "#BLUE",
+            "purple": "#PURPLE"
+        },
+
+        "colorhex":
+        {
+            "red": "#da1212",
+            "orange": "#e9831a",
+            "yellow": "#e7c316",
+            "green": "#134b06",
+            "blue": "#2b2894",
+            "purple": "#840dd1"
+        }
+    }
+}

@@ -1,0 +1,2 @@
+node ColorBot.js
+PAUSE
