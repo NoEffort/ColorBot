@@ -3,22 +3,22 @@
     {
         "colorname":
         {
-            "red": "#RED",
-            "orange": "#ORANGE",
-            "yellow": "#YELLOW",
-            "green": "#GRREN",
-            "blue": "#BLUE",
-            "purple": "#PURPLE"
+            "rolename=red": "#RED",
+            "rolename=orange": "#ORANGE",
+            "rolename=yellow": "#YELLOW",
+            "rolename=green": "#GRREN",
+            "rolename=blue": "#BLUE",
+            "rolename=purple": "#PURPLE"
         },
 
         "colorhex":
         {
-            "red": "#da1212",
-            "orange": "#e9831a",
-            "yellow": "#e7c316",
-            "green": "#134b06",
-            "blue": "#2b2894",
-            "purple": "#840dd1"
+            "rolename=red": "#da1212",
+            "rolename=orange": "#e9831a",
+            "rolename=yellow": "#e7c316",
+            "rolename=green": "#134b06",
+            "rolename=blue": "#2b2894",
+            "rolename=purple": "#840dd1"
         }
     }
 }
