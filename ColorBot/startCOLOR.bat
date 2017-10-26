@@ -1,2 +1,2 @@
-node ColorBot.js
+nodemon ColorBot.js
 PAUSE

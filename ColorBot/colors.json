@@ -1,24 +1,8 @@
-{
-    "colors":
-    {
-        "colorname":
-        {
-            "rolename=red": "#RED",
-            "rolename=orange": "#ORANGE",
-            "rolename=yellow": "#YELLOW",
-            "rolename=green": "#GRREN",
-            "rolename=blue": "#BLUE",
-            "rolename=purple": "#PURPLE"
-        },
-
-        "colorhex":
-        {
-            "rolename=red": "#da1212",
-            "rolename=orange": "#e9831a",
-            "rolename=yellow": "#e7c316",
-            "rolename=green": "#134b06",
-            "rolename=blue": "#2b2894",
-            "rolename=purple": "#840dd1"
-        }
-    }
-}
+[
+    { "role": "#RED", "hex": "#da1212" },
+    { "role": "#ORANGE", "hex": "#e9831a" },
+    { "role": "#YELLOW", "hex": "#e7c316" },
+    { "role": "#GREEN", "hex": "#134b06" },
+    { "role": "#BLUE", "hex": "#2b2894" },
+    { "role": "#PURPLE", "hex": "#840dd1" }
+]
