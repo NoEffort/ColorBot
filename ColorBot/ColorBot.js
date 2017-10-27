@@ -7,6 +7,7 @@ var contents = fs.readFileSync("colors.json");
 
 var $colors = [];
 $colors = JSON.parse(contents);
+bot.colors = require("./colors.json");
 
 const PREFIX = botSettings.prefix;
 const TOKEN = botSettings.token;
@@ -82,9 +83,37 @@ bot.on("message", async message =>
                                         message.channel.send("Use `#` to specify a color's role!");
                                     }
                                     else
-                                    {                               
-                                        message.guild.createRole({ name:args[3].toUpperCase(), color:args[2] });
-                                        message.channel.send(`Role Created | NAME: ${args[3].toUpperCase()} & HEX: ${args[2]}`);
+                                    {   
+                                        let role = message.member.guild.roles.find(r => r.name === args[3]);
+                                        if(!role)
+                                        {
+                                            try
+                                            {
+                                                role = await message.guild.createRole({
+                                                    name: args[3].toUpperCase(),
+                                                    color: args[2] 
+                                                });
+
+                                                bot.colors[role] = 
+                                                {
+                                                    role: args[3].toUpperCase(),
+                                                    hex: args[2]
+                                                }
+
+                                                fs.writeFileSync("colors.json", JSON.stringify(bot.colors, null, 4), err =>
+                                                {
+                                                    if(err) throw err;
+                                                    message.channel.send(`Role Created | NAME: ${args[3].toUpperCase()} & HEX: ${args[2]}`);
+                                                });
+                                            } catch(e)
+                                            {
+                                                console.log(e.stack);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            return message.channel.send("Role already created!");
+                                        }                          
                                     }
                                 }
                                 else
@@ -121,7 +150,7 @@ bot.on("message", async message =>
             });
             
             message.channel.send("Availible Colors are:\n\n" + 
-                $cList.splice(" ") + "\n\nTo join one, type: `!color <COLORNAME>` Example: `!color red`");
+                $cList.join(" ") + "\n\nTo join one, type: `!color <COLORNAME>` Example: `!color red`");
             break;
         default:
             message.channel.send("Invalid Command!");
@@ -130,4 +159,3 @@ bot.on("message", async message =>
 });
 
 bot.login(TOKEN);
-
