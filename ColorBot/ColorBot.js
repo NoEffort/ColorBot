@@ -113,17 +113,8 @@ bot.on("message", async message =>
             }
             break;
         case "colors":
-            function listColors()
-            {
-                $colors.forEach((data) =>
-                {
-                    return message.member.guild.roles.find("name", data.roles);
-                });
-                return;
-            }
-
             message.channel.send("Availible Colors are:\n\n" + 
-                listColors() + "\n\nTo join one, type: `!color <COLORNAME>` Example: `!color red`");
+                $colors.toString() + "\n\nTo join one, type: `!color <COLORNAME>` Example: `!color red`");
             break;
         default:
             message.channel.send("Invalid Command!");
