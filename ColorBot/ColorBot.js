@@ -113,8 +113,15 @@ bot.on("message", async message =>
             }
             break;
         case "colors":
+            
+            var $cList = [];
+
+            $colors.forEach(async (data) => { 
+                return $cList.push(message.member.guild.roles.find("name", data.role));
+            });
+            
             message.channel.send("Availible Colors are:\n\n" + 
-                $colors.toString() + "\n\nTo join one, type: `!color <COLORNAME>` Example: `!color red`");
+                $cList.splice(" ") + "\n\nTo join one, type: `!color <COLORNAME>` Example: `!color red`");
             break;
         default:
             message.channel.send("Invalid Command!");
@@ -123,3 +130,4 @@ bot.on("message", async message =>
 });
 
 bot.login(TOKEN);
+
