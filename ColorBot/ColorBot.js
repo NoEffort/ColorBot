@@ -5,10 +5,14 @@ const bot = new Discord.Client({disableEveryone: true});
 const fs = require("fs");
 var contents = fs.readFileSync("colors.json");
 
+//Grabbing $colors array to be used in turn with colors.json
 var $colors = [];
 $colors = JSON.parse(contents);
+
+//Is used in a later function. Keep in mind.
 bot.colors = require("./colors.json");
 
+//Gets token and prefix from settings.json
 const PREFIX = botSettings.prefix;
 const TOKEN = botSettings.token;
 
@@ -31,6 +35,7 @@ bot.on("message", async message =>
 
     var args = message.content.substring(PREFIX.length).split(" ");
     
+    //These will be removed in due time 39-44
     colorRed = message.member.guild.roles.find("name", "#RED");
     colorOrange = message.member.guild.roles.find("name", "#ORANGE");
     colorYellow = message.member.guild.roles.find("name", "#YELLOW");
@@ -44,9 +49,12 @@ bot.on("message", async message =>
         case "color":
             if(args[1])
             {
+                //Possibly run the $colors array to get commands automatically?
+                //Add a new section to colors.json to allow the case names to be defined.
                 switch(args[1].toLowerCase())
                 {
 
+                    //This stuff will be removed later 58-81
                     case "red":
                         message.member.addRole(colorRed);
                         message.channel.send("Color changed to: " + colorRed);
@@ -72,6 +80,7 @@ bot.on("message", async message =>
                         message.channel.send("Color changed to: " + colorPurple);
                         break;
                     case "add":
+                        //Looks for permission(s)
                         if(message.member.hasPermission("MANAGE_ROLES"))
                         {
                             if(args[2].startsWith("#"))
@@ -84,9 +93,23 @@ bot.on("message", async message =>
                                     }
                                     else
                                     {   
+                                        /*
+                                        This portion of code must be looked at later.
+                                        PROBLEM:
+                                            When attempting to run the code, the role is successfully created on the server,
+                                            but when it attempts to change colors.json, the program will restart.
+                                        I am using NODEMON, and I do have a nodemon.json in place that should prevent this,
+                                        yet nothing seems to work.
+                                        
+                                        Ideas, Ethan?
+                                        */
+                                        
+                                        //Defines a role class to find the created role
                                         let role = message.member.guild.roles.find(r => r.name === args[3]);
                                         if(!role)
                                         {
+                                            //If the role does not exist, it will attempt to make one.
+                                            //It does this successfully every time.
                                             try
                                             {
                                                 role = await message.guild.createRole({
@@ -94,12 +117,18 @@ bot.on("message", async message =>
                                                     color: args[2] 
                                                 });
 
+                                                /*
+                                                At this point, I'm attempting to array role through bot.colors to define what
+                                                needs to be added to colors.json [role & hex]
+                                                */
                                                 bot.colors[role] = 
                                                 {
                                                     role: args[3].toUpperCase(),
                                                     hex: args[2]
                                                 }
-
+                                                
+                                                //I think the problem is here. Once it tries to write the info, it restarts
+                                                //I have no idea why - and it shows no error, but the object does not write
                                                 fs.writeFileSync("colors.json", JSON.stringify(bot.colors, null, 4), err =>
                                                 {
                                                     if(err) throw err;
@@ -107,9 +136,11 @@ bot.on("message", async message =>
                                                 });
                                             } catch(e)
                                             {
+                                                //Error catching
                                                 console.log(e.stack);
                                             }
                                         }
+                                        //The rest of the else statements, not too special
                                         else
                                         {
                                             return message.channel.send("Role already created!");
@@ -145,10 +176,12 @@ bot.on("message", async message =>
             
             var $cList = [];
 
+            //Gets all colors defined in colors.json to use them in $cList array
             $colors.forEach(async (data) => { 
                 return $cList.push(message.member.guild.roles.find("name", data.role));
             });
             
+            //$cList array prints all availible colors in the chat
             message.channel.send("Availible Colors are:\n\n" + 
                 $cList.join(" ") + "\n\nTo join one, type: `!color <COLORNAME>` Example: `!color red`");
             break;
@@ -158,4 +191,5 @@ bot.on("message", async message =>
     }
 });
 
+//Bot logs into the server
 bot.login(TOKEN);

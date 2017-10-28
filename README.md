@@ -1,6 +1,6 @@
 # ColorBot
 
-# BUILD 0.1.12
+# BUILD SNAPSHOT 0.1.13
 Attempting a simplified "Color" Bot.
 It's not simple.
 
