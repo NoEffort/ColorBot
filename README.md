@@ -14,17 +14,17 @@ CB-SNAPSHOT0.1.14 - Fixed crashing, file writes but not properly.
   
   !colors ........................ Lists all availible colors on the server, edited in colors.json
   
-  !color <COLORNAME> ............. Makes your role color the color of the color you chose
+  !color (COLORNAME) ............. Makes your role color the color of the color you chose
   
-  !color add <COLORNAME> <HEX> ... Will add a role color to colors.json and the server specifying the name and hex color
+  !color add (COLORNAME) (HEX) ... Will add a role color to colors.json and the server specifying the name and hex color
   
   *[UNIMPLIMENTED]*
   
-  !color remove <COLORNAME> ...... Will remove the specified role color from colors.json and the server
+  !color remove (COLORNAME) ...... Will remove the specified role color from colors.json and the server
   
-  !color edit <COLORNAME> ........ Edit a color's name
+  !color edit (COLORNAME) ........ Edit a color's name
   
-  !color edit <COLORNAME> <HEX> .. Edit a color's hex code
+  !color edit (COLORNAME) (HEX) .. Edit a color's hex code
   
   !colors clear .................. ADMIN COMMAND, Clear all colors from the sever
   
