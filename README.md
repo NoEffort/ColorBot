@@ -29,7 +29,7 @@ CB-SNAPSHOT0.1.14 - Fixed crashing, file writes but not properly.
   !colors clear .................. ADMIN COMMAND, Clear all colors from the sever
   
 
-Each server member can only have one color active at a time.\n
+Each server member can only have one color active at a time.
 Each color is made with the same permissions (default), so placement does not matter.
 
 I plan on re-organizing everything at some point; this version is only a test build / proof of concept.
