@@ -4,15 +4,24 @@
 Attempting a simplified "Color" Bot.
 It's not simple.
 
-Commands:
-  # [IMPLIMENTED]
+# UPDATE LOG
++ Automated role adding for !color add <COLORNAME> <HEX>
+
++ Attemped add for automated file writing, program crashes while writing.
+
+* Fixed random restarts while using NODEMON
+
+# Commands:
+  *[IMPLIMENTED]*
+  
   !colors ........................ Lists all availible colors on the server, edited in colors.json
   
   !color <COLORNAME> ............. Makes your role color the color of the color you chose
   
   !color add <COLORNAME> <HEX> ... Will add a role color to colors.json and the server specifying the name and hex color
   
-  # [UNIMPLIMENTED]
+  *[UNIMPLIMENTED]*
+  
   !color remove <COLORNAME> ...... Will remove the specified role color from colors.json and the server
   
   !color edit <COLORNAME> ........ Edit a color's name
