@@ -4,7 +4,7 @@
 Attempting a simplified "Color" Bot.
 It's not simple.
 
-# UPDATE LOG:
+# UPDATE LOG
 
 * [Kinda] Fixed file writing. Proper lines write, but not in the correct area.
 
