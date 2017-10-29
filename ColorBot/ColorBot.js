@@ -3,12 +3,16 @@ const Discord = require("discord.js");
 const bot = new Discord.Client({disableEveryone: true});
 
 const fs = require("fs");
-var contents = fs.readFileSync("colors.json");
+var contents = fs.readFileSync("./colors.json");
 
+//Grabbing $colors array to be used in turn with colors.json
 var $colors = [];
 $colors = JSON.parse(contents);
+
+//Is used in a later function. Keep in mind.
 bot.colors = require("./colors.json");
 
+//Gets token and prefix from settings.json
 const PREFIX = botSettings.prefix;
 const TOKEN = botSettings.token;
 
@@ -31,6 +35,7 @@ bot.on("message", async message =>
 
     var args = message.content.substring(PREFIX.length).split(" ");
     
+    //These will be removed in due time 39-44
     colorRed = message.member.guild.roles.find("name", "#RED");
     colorOrange = message.member.guild.roles.find("name", "#ORANGE");
     colorYellow = message.member.guild.roles.find("name", "#YELLOW");
@@ -44,9 +49,12 @@ bot.on("message", async message =>
         case "color":
             if(args[1])
             {
+                //Possibly run the $colors array to get commands automatically?
+                //Add a new section to colors.json to allow the case names to be defined.
                 switch(args[1].toLowerCase())
                 {
 
+                    //This stuff will be removed later 58-81
                     case "red":
                         message.member.addRole(colorRed);
                         message.channel.send("Color changed to: " + colorRed);
@@ -72,6 +80,7 @@ bot.on("message", async message =>
                         message.channel.send("Color changed to: " + colorPurple);
                         break;
                     case "add":
+                        //Looks for permission(s)
                         if(message.member.hasPermission("MANAGE_ROLES"))
                         {
                             if(args[2].startsWith("#"))
@@ -84,9 +93,23 @@ bot.on("message", async message =>
                                     }
                                     else
                                     {   
+                                        /*
+                                        This portion of code must be looked at later.
+                                        PROBLEM:
+                                            When attempting to run the code, the role is successfully created on the server,
+                                            and it seems to write to the file colors.json, but it does not write in the proper
+                                            spot. Instead of writing between the [], it makes a new secion at the bottom and
+                                            just "adds" it in the wrong spot.
+                                        
+                                        Ideas, Ethan?
+                                        */
+                                        
+                                        //Defines a role class to find the created role
                                         let role = message.member.guild.roles.find(r => r.name === args[3]);
                                         if(!role)
                                         {
+                                            //If the role does not exist, it will attempt to make one.
+                                            //It does this successfully every time.
                                             try
                                             {
                                                 role = await message.guild.createRole({
@@ -94,22 +117,29 @@ bot.on("message", async message =>
                                                     color: args[2] 
                                                 });
 
-                                                bot.colors =
+                                                /*
+                                                I have this working, and array wasn't needed because i was not defining
+                                                any form of title.
+                                                */
+                                                bot.colors = 
                                                 {
                                                     role: args[3].toUpperCase(),
                                                     hex: args[2]
                                                 }
-
-                                                fs.appendFile("./colors.json", JSON.stringify(bot.colors, null, 4), {"flags": "a+"}, err =>
+                                                
+                                                //bot.colors does not write properly, as explained above
+                                                fs.appendFile("./colors.json", JSON.stringify(bot.colors, null, 4), err =>
                                                 {
                                                     if(err) throw err;
                                                     message.channel.send(`Role Created | NAME: ${args[3].toUpperCase()} & HEX: ${args[2]}`);
                                                 });
                                             } catch(e)
                                             {
+                                                //Error catching
                                                 console.log(e.stack);
                                             }
                                         }
+                                        //The rest of the else statements, not too special
                                         else
                                         {
                                             return message.channel.send("Role already created!");
@@ -145,10 +175,12 @@ bot.on("message", async message =>
             
             var $cList = [];
 
+            //Gets all colors defined in colors.json to use them in $cList array
             $colors.forEach(async (data) => { 
                 return $cList.push(message.member.guild.roles.find("name", data.role));
             });
             
+            //$cList array prints all availible colors in the chat
             message.channel.send("Availible Colors are:\n\n" + 
                 $cList.join(" ") + "\n\nTo join one, type: `!color <COLORNAME>` Example: `!color red`");
             break;
@@ -158,4 +190,5 @@ bot.on("message", async message =>
     }
 });
 
+//Bot logs into the server
 bot.login(TOKEN);
