@@ -11,6 +11,7 @@ CB-SNAPSHOT0.1.14 - Fixed crashing, file writes but not properly.
 
 # Commands:
   *[IMPLIMENTED]*
+  
   !colors ........................ Lists all availible colors on the server, edited in colors.json
   
   !color <COLORNAME> ............. Makes your role color the color of the color you chose
@@ -18,6 +19,7 @@ CB-SNAPSHOT0.1.14 - Fixed crashing, file writes but not properly.
   !color add <COLORNAME> <HEX> ... Will add a role color to colors.json and the server specifying the name and hex color
   
   *[UNIMPLIMENTED]*
+  
   !color remove <COLORNAME> ...... Will remove the specified role color from colors.json and the server
   
   !color edit <COLORNAME> ........ Edit a color's name
@@ -27,7 +29,7 @@ CB-SNAPSHOT0.1.14 - Fixed crashing, file writes but not properly.
   !colors clear .................. ADMIN COMMAND, Clear all colors from the sever
   
 
-Each server member can only have one color active at a time.
+Each server member can only have one color active at a time.\n
 Each color is made with the same permissions (default), so placement does not matter.
 
 I plan on re-organizing everything at some point; this version is only a test build / proof of concept.
