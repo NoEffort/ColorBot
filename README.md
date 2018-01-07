@@ -27,6 +27,8 @@ It's not simple.
   
   !colors clear .................. ADMIN COMMAND, Clear all colors from the sever
   
+  !colors default ................ ADMIN COMMAND, Clear all non-default colors from the server
+  
 
 Each server member can only have one color active at a time.
 Each color is made with the same permissions (default), so placement does not matter.
